@@ -1,6 +1,6 @@
 ### 先安装证书
 ```
-bash /root/.acme.sh/acme.sh --issue -d 域名 --debug --standalone --keylength ec-256 --listen-v6    #“域名”更换掉,cf先变成灰色  
+bash /root/.acme.sh/acme.sh --issue -d 域名 --debug --standalone --keylength ec-256 --listen-v6 --force    #“域名”更换掉,cf先变成灰色  
 
 yum install socat #通过80端口生成证书的依赖 #centos7系统
  yum install netcat #centos7系统
