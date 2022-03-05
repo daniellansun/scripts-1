@@ -470,7 +470,7 @@ getData() {
     echo ""
     read -p " 是否安装BBR(默认不安装)?[y/n]:" NEED_BBR
     [[ -z "$NEED_BBR" ]] && NEED_BBR=y
-    [[ "$NEED_BBR" = "N" ]] && NEED_BBR=y
+    [[ "$NEED_BBR" = "N" ]] && NEED_BBR=N
     colorEcho $BLUE " 安装BBR：$NEED_BBR"
 }
 
