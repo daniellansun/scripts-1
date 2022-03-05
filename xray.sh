@@ -468,9 +468,9 @@ getData() {
     fi
 
     echo ""
-    read -p " 是否安装BBR(默认安装)?[y/n]:" NEED_BBR
+    read -p " 是否安装BBR(默认不安装)?[y/n]:" NEED_BBR
     [[ -z "$NEED_BBR" ]] && NEED_BBR=y
-    [[ "$NEED_BBR" = "Y" ]] && NEED_BBR=y
+    [[ "$NEED_BBR" = "N" ]] && NEED_BBR=y
     colorEcho $BLUE " 安装BBR：$NEED_BBR"
 }
 
@@ -549,7 +549,7 @@ getCert() {
         fi
         curl -sL https://get.acme.sh | sh -s email=hijk.pw@protonmail.sh
         source ~/.bashrc
-        ~/.acme.sh/acme.sh  --upgrade  --auto-upgrade
+        ~/.acme.sh/acme.sh  --upgrade  --auto-upgrade --force
         ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt --force 
         if [[ "$BT" = "false" ]]; then
             ~/.acme.sh/acme.sh   --issue -d $DOMAIN --keylength ec-256 --pre-hook "systemctl stop nginx" --post-hook "systemctl restart nginx"  --standalone
