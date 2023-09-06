@@ -176,7 +176,7 @@ getVersion() {
     RETVAL=$?
     CUR_VER="$(normalizeVersion "$(echo "$VER" | head -n 1 | cut -d " " -f2)")"
     TAG_URL="${V6_PROXY}https://api.github.com/repos/XTLS/Xray-core/releases/latest"
-    NEW_VER="$(normalizeVersion "$(curl -s "${TAG_URL}" --connect-timeout 10| grep 'tag_name' | cut -d\" -f4)")"
+    NEW_VER="$(normalizeVersion "$(curl -s "${TAG_URL}" --connect-timeout 10| jq -r '.tag_name')")"
 
     if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]]; then
         colorEcho $RED " 检查Xray版本信息失败，请检查网络"
@@ -1364,7 +1364,7 @@ install() {
     $PMT clean all
     [[ "$PMT" = "apt" ]] && $PMT update
     #echo $CMD_UPGRADE | bash
-    $CMD_INSTALL wget vim unzip tar gcc openssl
+    $CMD_INSTALL wget vim unzip tar gcc openssl jq
     $CMD_INSTALL net-tools
     if [[ "$PMT" = "apt" ]]; then
         $CMD_INSTALL libssl-dev g++
