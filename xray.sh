@@ -73,7 +73,7 @@ checkSystem() {
         PMT="yum"
         CMD_INSTALL="yum install -y "
         CMD_REMOVE="yum remove -y "
-        CMD_UPGRADE="yum update -y"
+        CMD_UPGRADE="yum update -y --exclude=kernel*"
     fi
     res=`which systemctl 2>/dev/null`
     if [[ "$?" != "0" ]]; then
