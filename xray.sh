@@ -33,7 +33,7 @@ V6_PROXY=""
 IP=`curl -sL -4 ip.sb`
 if [[ "$?" != "0" ]]; then
     IP=`curl -sL -6 ip.sb`
-    V6_PROXY="https://gh.hijk.art/"
+    #V6_PROXY="https://gh.hijk.art/"
 fi
 
 BT="false"
@@ -178,7 +178,7 @@ getVersion() {
     TAG_URL="${V6_PROXY}https://api.github.com/repos/XTLS/Xray-core/releases/latest"
     NEW_VER="$(normalizeVersion "$(curl -s "${TAG_URL}" --connect-timeout 10| jq -r '.tag_name')")"
 
-    if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]]; then
+    if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]] || [[ $NEW_VER == "null" ]]; then
         colorEcho $RED " 检查Xray版本信息失败，请检查网络"
         return 3
     elif [[ $RETVAL -ne 0 ]];then
