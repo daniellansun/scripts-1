@@ -2,6 +2,8 @@
 # xray一键安装脚本
 # Author: hijk<https://hijk.art>
 
+# e.g.  v1.8.7
+DEFAULT_VER="$1"
 
 RED="\033[31m"      # Error message
 GREEN="\033[32m"    # Success message
@@ -178,7 +180,12 @@ getVersion() {
     TAG_URL="${V6_PROXY}https://api.github.com/repos/XTLS/Xray-core/releases/latest"
     NEW_VER="$(normalizeVersion "$(curl -s "${TAG_URL}" --connect-timeout 10| jq -r '.tag_name')")"
 
-    if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]] || [[ $NEW_VER == "null" ]]; then
+    if [[ $NEW_VER == "vnull" ]]; then
+        NEW_VER="$DEFAULT_VER"
+        colorEcho $YELLOW " 检查Xray版本信息失败，请检查网络，使用Xray默认版本号：$DEFAULT_VER"
+    fi
+
+    if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]]; then
         colorEcho $RED " 检查Xray版本信息失败，请检查网络"
         return 3
     elif [[ $RETVAL -ne 0 ]];then
