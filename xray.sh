@@ -2,8 +2,8 @@
 # xray一键安装脚本
 # Author: hijk<https://hijk.art>
 
-# e.g.  v1.8.7
-DEFAULT_VER="$1"
+
+DEFAULT_VER="v1.8.7"
 
 RED="\033[31m"      # Error message
 GREEN="\033[32m"    # Success message
@@ -161,7 +161,7 @@ normalizeVersion() {
                 echo "$1"
             ;;
             http*)
-                echo "v1.4.2"
+                echo "$DEFAULT_VER"
             ;;
             *)
                 echo "v$1"
