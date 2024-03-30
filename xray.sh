@@ -3,7 +3,7 @@
 # Author: hijk<https://hijk.art>
 
 
-DEFAULT_VER="v1.8.7"
+DEFAULT_VER="v1.8.10"
 
 RED="\033[31m"      # Error message
 GREEN="\033[32m"    # Success message
